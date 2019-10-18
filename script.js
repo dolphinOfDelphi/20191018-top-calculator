@@ -51,20 +51,66 @@ function process(command) {
     } else return "Invalid eq'n";
 }
 
-let displayDiv = document.querySelector("#display");
-let inputButtons = document.querySelectorAll(".number, .sign");
-inputButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        displayDiv.textContent += e.target.textContent;
-    });
-});
-document.querySelector("#equals").addEventListener("click", () => {
+function enter(input) {
+    if (displayDiv.textContent.length < 16)
+        displayDiv.textContent += input;
+}
+
+function calculate() {
     displayDiv.textContent = process(displayDiv.textContent);
-});
-document.querySelector("#clear").addEventListener("click", () => {
+}
+
+function clear() {
     displayDiv.textContent = "";
-});
-document.querySelector("#back").addEventListener("click", () => {
+}
+
+function backspace() {
     let displayText = displayDiv.textContent;
     displayDiv.textContent = displayText.substring(0, displayText.length - 1);
-});
+}
+
+let displayDiv = document.querySelector("#display");
+let inputButtons = document.querySelectorAll(".number, .sign");
+
+function initialise() {
+    displayDiv.textContent = "";
+    inputButtons.forEach((button) => {
+        button.addEventListener("click", (e) => enter(e.target.textContent));
+    });
+    document.querySelector("#equals").addEventListener("click", calculate);
+    document.querySelector("#clear").addEventListener("click", clear);
+    document.querySelector("#back").addEventListener("click", backspace);
+
+    window.addEventListener("keydown", (e) => {
+        switch (e.key) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                enter(e.key);
+                break;
+            case 'Enter':
+            case '=':
+                calculate();
+                break;
+            case 'c':
+                clear();
+                break;
+            case 'Backspace':
+                backspace();
+                break;
+        }
+    });
+}
+
+initialise();
