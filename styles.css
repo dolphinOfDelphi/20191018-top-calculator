@@ -10,13 +10,15 @@
 body {
   background-color: #DDD;
   position: relative;
+  width: 100vw; height: 100vh;
 }
 
 #calculator {
   background-color: #EEE;
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 5%);
+  transform: translate(-50%, -50%);
   width: 480px; height: 480px;
   display: grid;
   grid-template-areas: "display"
@@ -30,21 +32,24 @@ body {
   grid-area: display;
   border: 1px solid #CCC;
   margin-bottom: 5%;
+  font-family: monospace;
+  text-align: end;
+  font-size: 50px;
 }
 
 #buttons {
   grid-area: buttons;
   display: grid;
-  grid-template-areas: "clear divide multiply subtract"
-                       "seven eight nine add"
+  grid-template-areas: "clear back divide multiply"
+                       "seven eight nine subtract"
                        "six five four add"
-                       "three two one equals"
+                       "three two one add"
                        "zero zero decimal equals";
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
 
-button:active {box-shadow: 0px 0px 2px 2px #9EFDFF;}
+button:active {box-shadow: 0 0 2px 2px #9EFDFF;}
 .button {
   margin: 2%;
   font-size: 30px;
@@ -52,6 +57,7 @@ button:active {box-shadow: 0px 0px 2px 2px #9EFDFF;}
 .number {background-color: white;}
 .sign {background-color: #CCC;}
 .clear {background-color: pink;}
+.other {background-color: #DDD;}
 
 #one {grid-area: one;}
 #two {grid-area: two;}
@@ -70,3 +76,4 @@ button:active {box-shadow: 0px 0px 2px 2px #9EFDFF;}
 #add {grid-area: add;}
 #equals {grid-area: equals;}
 #clear {grid-area: clear;}
+#back {grid-area: back;}
