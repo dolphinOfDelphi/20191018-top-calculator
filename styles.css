@@ -51,7 +51,7 @@ body {
 
 button:active {box-shadow: 0 0 2px 2px #9EFDFF;}
 .button {
-  margin: 2%;
+  margin: 0.1em;
   font-size: 30px;
 }
 .number {background-color: white;}
